@@ -1,0 +1,23 @@
+<% if obj && !obj.empty? %>
+  <table class="table table-bordered table-hover w-50">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tBody>
+      <% obj.each do |friend| %>
+        <tr>
+          <td><%= friend.email %></td>
+          <td><%= friend.first_name %></td>
+          <td><%= friend.last_name %></td>
+          <td class="d-flex justify-content-center align-items-center"><%= link_to 'View Profile', user_path(friend), class: "btn btn-sm btn-success" %>
+          <%= button_to 'Stop following', friendship_path(friend), method: :delete, data: {turbo_confirm: 'Are you sure?'}, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tBody>
+  </table>
+<% end %>

@@ -1,0 +1,15 @@
+<h2> User Details </h2>
+
+<div class="card card-header w-50 d-flex justify-content-center align-items-center flex-column gap-2">
+    <div class="d-flex justify-content-center align-items-center flex-row gap-2">
+        <strong>Email: </strong> <%= @user.email %>
+        <strong>Name: </strong> <%= @user.full_name %>
+        <% if current_user.not_friends_with?(@user.id) %>
+            <%= button_to 'Follow friend?', friendships_path(friend: @user), class: "btn btn-sm btn-success", method: :post %>
+        <% else %>
+            <span class="badge bg-secondary">You are friends already</span>
+        <% end %>
+    </div>
+</div>
+
+<%= render 'stocks/list', obj: @tracked_stocks %>

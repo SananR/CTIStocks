@@ -1,0 +1,21 @@
+<h1> Friends </h1>
+
+
+<div class="pt-5">
+    <h3> Search friends</h3>
+    <%= form_tag search_friend_path, remote: true, method: :get, class: "form-inline" do %>
+        <div class="form-group d-flex justify-content-center align-items-center">
+            <div class="col-sm-9">
+                <%= text_field_tag :friend, params[:friend], placeholder: "Name or email", class: "form-control form-control-lg", autofocus: true %>
+            </div>
+            <div class="col-sm-3">
+                <%= button_tag type: :submit, class: "btn btn-success" do %>
+                    <%= fa_icon "search 2x" %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+<%= render 'users/friend_result' %>
+<%= render 'friends/list', obj: @my_friends %>

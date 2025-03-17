@@ -1,0 +1,16 @@
+<% if @friends %>
+  <div class="card card-header w-50 d-flex justify-content-center align-items-center flex-column gap-2">
+      <% @friends.each do |friend| %>
+        <div class="d-flex justify-content-center align-items-center flex-row gap-2">
+          <strong>Email: </strong> <%= friend.email %>
+          <strong>Name: </strong> <%= friend.full_name %>
+          <%= link_to "View Profile", user_path(friend), class: "btn btn-sm btn-success" %>
+          <% if current_user.not_friends_with?(friend) %>
+            <%= button_to 'Follow friend?', friendships_path(friend: friend), class: "btn btn-sm btn-success", method: :post %>
+          <% else %>
+            <span class="badge bg-secondary">You are friends already</span>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+<% end %>
